@@ -1,7 +1,8 @@
 import React from 'react'
 import moment from 'moment'
+import { PostProps } from '../types'
 
-const PostDetail = ({ post }) => {
+const PostDetail = ({ post }: PostProps) => {
   const getContentFragment = (index, text, obj, type) => {
     let modifiedText = text
 

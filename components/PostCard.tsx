@@ -1,25 +1,9 @@
 import React from 'react'
 import moment from 'moment'
 import Link from 'next/link'
+import { Post } from '../types'
 
-type PostCardProps = {
-  key: string
-  author: {
-    name: string
-    photo: {
-      url: string
-    }
-  }
-  createdAt: string
-  excerpt: string
-  featuredImages: {
-    url: string
-  }
-  slug: string
-  title: string
-}
-
-const PostCard = (post: PostCardProps) => {
+const PostCard = (post: Post) => {
   console.log('post', post)
   return (
     <div className="mb-8 rounded-lg bg-white p-0 pb-12 shadow-lg lg:p-8">

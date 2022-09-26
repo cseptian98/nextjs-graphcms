@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-type AuthorProps = {
+export type AuthorProps = {
   author: {
     bio: string
     name: string

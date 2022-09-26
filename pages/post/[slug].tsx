@@ -7,10 +7,17 @@ import {
   Author,
   Comments,
   CommentsForm,
+  Loader,
 } from '../../components'
+import { PostProps } from '../../types'
+import { useRouter } from 'next/router'
 
-const PostDetails = ({ post }) => {
-  console.log('post', post);
+const PostDetails = ({ post }: PostProps) => {
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <Loader />
+  }
   return (
     <div className="container mx-auto mb-8 px-10">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
@@ -36,7 +43,7 @@ const PostDetails = ({ post }) => {
 
 export default PostDetails
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: { params: any }) {
   const data = await getPostDetails(params.slug)
 
   return {
@@ -45,10 +52,10 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
+  const posts = await getPosts()
 
   return {
-    paths: posts.map(({ node: { slug }}) => ({ params: { slug } })),
-    fallback: false, 
+    paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
+    fallback: false,
   }
 }
